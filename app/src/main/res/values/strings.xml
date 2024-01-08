@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">githubapp</string>
+
+    <string name="developer_name">Jonas Vieira | Android Developer</string>
+    <string name="company_name">GitHub, Inc.</string>
 </resources>
