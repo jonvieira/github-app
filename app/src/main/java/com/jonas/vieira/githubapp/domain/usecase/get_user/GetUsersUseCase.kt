@@ -1,4 +1,4 @@
-package com.jonas.vieira.githubapp.domain.usecase
+package com.jonas.vieira.githubapp.domain.usecase.get_user
 
 import com.jonas.vieira.githubapp.domain.model.UsersModel
 

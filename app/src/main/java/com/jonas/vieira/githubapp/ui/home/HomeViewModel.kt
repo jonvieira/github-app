@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jonas.vieira.githubapp.domain.model.UsersModel
-import com.jonas.vieira.githubapp.domain.usecase.GetUsersUseCase
+import com.jonas.vieira.githubapp.domain.usecase.get_user.GetUsersUseCase
 import com.jonas.vieira.githubapp.ui.state.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
