@@ -57,4 +57,88 @@ class HomeActivity : AppCompatActivity() {
         viewModel.getUsers()
     }
 
+    private fun configureRecyclerView() {
+        binding.recyclerViewUsersList.adapter = adapter
+    }
+
+    private fun handleErrorState(message: String) {
+        showLoading(false)
+        showAlertDialog(message)
+    }
+
+    private fun handleLoadingState() = showLoading(true)
+
+    private fun handleSuccessState(data: List<UsersModel>) {
+        showLoading(false)
+        usersList = data
+        adapter.usersList = data
+    }
+
+    private fun handleClickUserList() = UsersListAdapter.OnClickListener {
+        goToUsersDetailActivity(it)
+    }
+
+    private fun goToUsersDetailActivity(it: UsersModel) {
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra(EXTRA_USER_URL, it.login)
+        startActivity(intent)
+    }
+
+    private fun searchUser() {
+        binding.searchViewUser.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterSearchUser(newText)
+                return true
+            }
+        })
+    }
+
+    private fun filterSearchUser(query: String?) {
+        if (query != null) {
+            val filteredList = ArrayList<UsersModel>()
+            for (i in usersList) {
+                if (i.login.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList.add(i)
+                }
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(
+                    this@HomeActivity, getString(R.string.user_not_find),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                adapter.usersList = emptyList()
+            } else {
+                adapter.usersList = filteredList
+            }
+        }
+    }
+
+    private fun showAlertDialog(message: String) {
+
+        val builder = AlertDialog.Builder(this)
+        with(builder) {
+            setTitle(getString(R.string.error_list_users_title))
+            setMessage(message)
+            setPositiveButton(getString(R.string.try_again_message), OnClickListener(positiveClick))
+            setNegativeButton(getString(R.string.close_message), OnClickListener(negativeClick))
+            show()
+        }
+    }
+
+    private fun showLoading(show: Boolean) {
+        if (show)
+            binding.homeProgressBar.visibility = View.VISIBLE
+        else
+            binding.homeProgressBar.visibility = View.GONE
+    }
+
+    companion object {
+        const val EXTRA_USER_URL = "EXTRA_USER_URL"
+    }
 }
