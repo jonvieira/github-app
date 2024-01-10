@@ -3,4 +3,12 @@
 
     <string name="developer_name">Jonas Vieira | Android Developer</string>
     <string name="company_name">GitHub, Inc.</string>
+    <string name="error_list_users_title">Poxa, algo deu errado :(</string>
+    <string name="try_again_message">Tentar Novamente</string>
+    <string name="close_message">Sair</string>
+    <string name="search_users">Pesquisar usuários</string>
+    <string name="user_not_find">Não encontramos este usuário :(</string>
+    <string name="image_view_user_content_description">Foto de perfil do usuário</string>
+    <string name="image_button_user_details_content_description">Botão para obter detalhes do usuário</string>
+
 </resources>
