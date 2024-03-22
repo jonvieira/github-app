@@ -28,7 +28,7 @@ Model-View-ViewModel (MVVM)
 
 ## Rodando os testes
 
-Para rodar os testes, rode o seguinte comando
+Para rodar os testes, rode o seguinte comando 
 
 ```bash
   ./gradlew test
